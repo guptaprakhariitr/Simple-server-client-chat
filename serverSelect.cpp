@@ -79,7 +79,7 @@ int main(int argc , char *argv[])
 	puts("Waiting for connections ..."); 
 		
 	while(TRUE) 
-	{ 
+	{ int sdd;
 		//clear the socket set 
 		FD_ZERO(&readfds); 
 		//add master socket to set 
@@ -126,7 +126,7 @@ int main(int argc , char *argv[])
 				(address.sin_port)); */
 		
 			//send new connection greeting message 
-			puts("Person ONline"); 
+			printf("Person %d ONline\n",new_socket); 
 				
 			//add new socket to array of sockets 
 			for (i = 0; i < max_clients; i++) 
@@ -168,9 +168,9 @@ int main(int argc , char *argv[])
 					//set the string terminating NULL byte on the end 
 					//of the data read 
 					buffer[valread] = '\0'; 
-					printf("Client - %s\n",buffer);
+					printf("Client %d - %s\n",sd,buffer);
 					 char* msg=new char[1001];
-					 printf("Server - ");
+					 printf("Server To person %d - ",sd);
 					cin.getline(msg,700);
 					send(sd , msg , strlen(buffer) , 0 ); 
 				} 
